@@ -268,3 +268,17 @@
     padding: 0 10px;
     background-color: var(--pay-another-way-text-color);
 }
+
+.Shipping-Details {
+    margin-top: 1rem;
+}
+
+.Shipping-Details-Heading {
+    margin: 5px 0;
+    color: black;
+    font-size: 18px;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    line-height: 1.167;
+    letter-spacing: -0.01562em;
+}

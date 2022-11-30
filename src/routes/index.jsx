@@ -18,7 +18,7 @@ export default function HomePage() {
             <div className='Announcement-Top'>
               {Announement()}
             </div>
-            
+
             <div className='PayButton LinkButton'>
               <Card sectioned>
                 <Button>
@@ -59,8 +59,11 @@ export default function HomePage() {
               <span>Or Pay Another Way Below</span>
             </div>
 
-            <div className='Announcement-Bottom'>
-              {Announement()}
+            <div className='Shipping-Details'>
+              <h1 className='Shipping-Details-Heading'>Shipping Details</h1>
+              <div className='Announcement-Bottom'>
+                {Announement()}
+              </div>
             </div>
 
           </Layout.Section>
