@@ -1,0 +1,270 @@
+:root {
+    --pay-btn-card-border-color: #EBEBEB;
+    --pay-btn-card-bg-color: rgba(236, 237, 244, 0.3);
+    --link-btn-bg-color: #33DDB3;
+    --link-btn-bg-hover-color: #31e4b8;
+    --paypal-btn-bg-color: #FFC439;
+    --paypal-btn-bg-hover-color: #F2BA36;
+    --pay-another-way-text-color: #FAFAFA;
+    --strong-demand-announcement-bg-color: #FFE7D1;
+    --strong-demand-announcement-text-color: #FF5A50;
+
+}
+
+.container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+@media (min-width: 576px) {
+    .container {
+        max-width: 540px;
+    }
+}
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+.container .Polaris-Page {
+    padding: 0;
+}
+
+.Home-Page {
+    margin-top: 70px;
+}
+
+@media (min-width: 900px) {
+    .Home-Page {
+        margin-top: 15px;
+    }
+}
+
+.Logo-Container {
+    display: flex;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--pay-btn-card-border-color);
+    margin-bottom: 36px;
+    justify-content: space-around;
+}
+
+
+@media (max-width: 899px) {
+    .Logo-Container {
+        margin-bottom: 10px;
+    }
+}
+
+.Logo-Section {
+    max-height: 50px;
+    text-align: center;
+}
+
+.Logo-Section img {
+    height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.Strong-Demand-Announcement {
+    display: flex;
+    padding-bottom: 20px;
+}
+
+.Strong-Demand-Announcement .Polaris-Card {
+    width: 100%;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.Strong-Demand-Announcement .Polaris-Card__Section {
+    padding: 5px;
+}
+
+.Strong-Demand-Announcement .Polaris-Card__Section div {
+    background-color: var(--strong-demand-announcement-bg-color);
+    border-radius: 5px;
+    padding: 8px 16px;
+}
+
+.Strong-Demand-Announcement .Polaris-Card__Section div p {
+    color: var(--strong-demand-announcement-text-color);
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.Announcement-Top {
+    display: block;
+}
+
+.Announcement-Bottom {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .container .Polaris-Layout__Section {
+        max-width: 58%;
+    }
+
+    .Announcement-Top {
+        display: none;
+    }
+
+    .Announcement-Bottom {
+        display: block;
+    }
+}
+
+.PayButton .Polaris-Card {
+    border: 1px solid var(--pay-btn-card-border-color);
+    border-radius: 7px;
+    box-shadow: none;
+    background: var(--pay-btn-card-bg-color);
+    align-items: center;
+    justify-content: center;
+}
+
+.PayButton .Polaris-Card .Polaris-Card__Section {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.PayButton button {
+    width: 100%;
+    max-width: 380px;
+    border-radius: 4px;
+    border-color: transparent;
+}
+
+.LinkButton button {
+    background-color: var(--link-btn-bg-color);
+    transition: background-color .15s ease;
+    max-height: 64px;
+    min-height: 32px;
+}
+
+.LinkButton button:hover {
+    background-color: var(--link-btn-bg-hover-color);
+}
+
+.LinkButton-content {
+    display: flex;
+}
+
+.LinkButton-logo {
+    display: flex;
+    align-items: center;
+}
+
+.LinkButton-logoSvg {
+    display: block;
+    height: 40vh;
+    max-height: 16px;
+    max-width: 48.534px;
+    width: 88.825vh;
+}
+
+.LinkButton-text {
+    display: flex;
+    font-size: 14px;
+    font-weight: 500;
+    height: min(29px, 52vh);
+    white-space: nowrap;
+    align-items: center;
+}
+
+.LinkButton-text span {
+    color: #1d3944;
+}
+
+.LinkButton-textDivider {
+    -webkit-box-flex: 0;
+    -ms-flex-positive: 0;
+    background: #1ac59b;
+    -webkit-flex-grow: 0;
+    flex-grow: 0;
+    height: 100%;
+    margin: 0 8px 0 5px;
+    max-height: 22px;
+    width: 1px;
+}
+
+.LinkButton-lock {
+    fill: #1d3944;
+    -ms-flex-negative: 0;
+    display: block;
+    -webkit-flex-shrink: 0;
+    flex-shrink: 0;
+    height: 32vh;
+    margin-left: min(8px, 14vh);
+    max-height: 14px;
+    max-width: 14.625px;
+    width: 26vh;
+}
+
+.PaypalButton button {
+    background-color: var(--paypal-btn-bg-color);
+    transition: background-color .15s ease;
+    max-height: 64px;
+    min-height: 32px;
+}
+
+.PaypalButton button:hover {
+    background-color: var(--paypal-btn-bg-hover-color);
+    color: #2C2E2F;
+}
+
+.PaypalButton-content {
+    display: flex;
+    height: 22px;
+}
+
+.PaypalButton-content img {
+    height: 100%;
+}
+
+.PaypalButton-content span {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    margin-top: -3px;
+    margin-left: 4px;
+}
+
+
+.Pay-Another-Way {
+    width: 100%;
+    opacity: 0.6;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 400;
+    line-height: 0.0em;
+    padding-top: 15px;
+    border-bottom: 1px solid rgb(0 0 0 / 40%);
+    flex-direction: column;
+    letter-spacing: 0.03333em;
+}
+
+.Pay-Another-Way span {
+    padding: 0 10px;
+    background-color: var(--pay-another-way-text-color);
+}
