@@ -1,10 +1,34 @@
 import { Page, Layout, Card, Button } from '@shopify/polaris';
-import React from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import chekifyLogo from '../assets/chekifyLogo.svg'
 import paypalLogo from '../assets/paypalLogo.svg'
+import { ShippingForm } from '../components'
 
 export default function HomePage() {
+
+  const [shippingDetails, setShippingDetails] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    address: '',
+    city: '',
+    country: 'pakistan',
+    state: '',
+    zipCode: '',
+    experience: "It's great :)",
+  })
+
+  const handleShippingDetails = (e) => {
+    setShippingDetails({ ...shippingDetails, [e.target.name]: e.target.value })
+  }
+
+  useEffect(() => {
+    console.log(shippingDetails);
+  }, [shippingDetails])
+
+
+
   return (
     <div className='container Home-Page'>
       <Page fullWidth>
@@ -34,7 +58,7 @@ export default function HomePage() {
                       <div className='LinkButton-textDivider'></div>
                       <span>Pay faster</span>
                       <svg className="LinkButton-lock" focusable="false" viewBox="0 0 13 16" fill="none">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 7V5a5 5 0 0 1 10 0v2h.5a1 1 0 0 1 1 1v6a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8a1 1 0 0 1 1-1h.5Zm5 2.5a1 1 0 0 0-1 1v2a1 1 0 1 0 2 0v-2a1 1 0 0 0-1-1Zm3-2.5V5a3 3 0 0 0-6 0v2h6Z" fill="#1D3944">
+                        <path fillRule="evenodd" clipRule="evenodd" d="M1.5 7V5a5 5 0 0 1 10 0v2h.5a1 1 0 0 1 1 1v6a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V8a1 1 0 0 1 1-1h.5Zm5 2.5a1 1 0 0 0-1 1v2a1 1 0 1 0 2 0v-2a1 1 0 0 0-1-1Zm3-2.5V5a3 3 0 0 0-6 0v2h6Z" fill="#1D3944">
                         </path>
                       </svg>
                     </span>
@@ -64,6 +88,10 @@ export default function HomePage() {
               <div className='Announcement-Bottom'>
                 {Announement()}
               </div>
+
+              <Card sectioned>
+                <ShippingForm shippingDetails={shippingDetails} handleShippingDetails={handleShippingDetails} />
+              </Card>
             </div>
 
           </Layout.Section>
