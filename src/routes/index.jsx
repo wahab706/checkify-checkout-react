@@ -1,9 +1,12 @@
-import { Page, Layout, Card, Button } from '@shopify/polaris';
+import { Page, Layout, Card, Stack, Button, Checkbox, RadioButton } from '@shopify/polaris';
 import React, { useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import chekifyLogo from '../assets/chekifyLogo.svg'
 import paypalLogo from '../assets/paypalLogo.svg'
-import { ShippingForm } from '../components'
+import card from '../assets/card.png'
+import paypal from '../assets/paypal.png'
+import gift from '../assets/gift.webp'
+import { ShippingForm, BillingForm } from '../components'
 
 export default function HomePage() {
 
@@ -19,18 +22,42 @@ export default function HomePage() {
     experience: "It's great :)",
   })
 
+  const [billingDetails, setBillingDetails] = useState({
+    firstName: '',
+    lastName: '',
+    address: '',
+    city: '',
+    country: 'pakistan',
+    zipCode: '',
+  })
+
+  const [signUpExclusive, setSignUpExclusive] = useState(true);
+  const [isBillingAddressSame, setIsBillingAddressSame] = useState(true);
+  const [shippingOptionsValue, setShippingOptionsValue] = useState('pro');
+
   const handleShippingDetails = (e) => {
     setShippingDetails({ ...shippingDetails, [e.target.name]: e.target.value })
   }
 
+  const handleBillingDetails = (e) => {
+    setBillingDetails({ ...billingDetails, [e.target.name]: e.target.value })
+  }
+
+  const handleSignUpExclusive = useCallback((newChecked) => setSignUpExclusive(newChecked), []);
+  const handleIsBillingAddressSame = useCallback((newChecked) => setIsBillingAddressSame(newChecked), []);
+  const handleShippingOptionsValue = useCallback((_checked, newValue) => setShippingOptionsValue(newValue), [],);
+
+
+
+
   useEffect(() => {
-    console.log(shippingDetails);
-  }, [shippingDetails])
+    console.log(signUpExclusive);
+  }, [signUpExclusive])
 
 
 
   return (
-    <div className='container Home-Page'>
+    <div className='container Checkout-Page'>
       <Page fullWidth>
         <div className='Logo-Container'>
           <Link url='/' className='Logo-Section' >
@@ -84,7 +111,8 @@ export default function HomePage() {
             </div>
 
             <div className='Shipping-Details'>
-              <h1 className='Shipping-Details-Heading'>Shipping Details</h1>
+              <h1 className='Checikfy-Heading'>Shipping Details</h1>
+
               <div className='Announcement-Bottom'>
                 {Announement()}
               </div>
@@ -92,8 +120,112 @@ export default function HomePage() {
               <Card sectioned>
                 <ShippingForm shippingDetails={shippingDetails} handleShippingDetails={handleShippingDetails} />
               </Card>
+
+              <Card sectioned>
+                <Checkbox
+                  label="Sign up for exclusive offers and news"
+                  checked={signUpExclusive}
+                  onChange={handleSignUpExclusive}
+                />
+              </Card>
             </div>
 
+            <div className='Shipping-Options'>
+              <h1 className='Checikfy-Heading'>Shipping Options</h1>
+
+              <Card sectioned>
+                <Stack vertical>
+                  <RadioButton
+                    label={
+                      <span>
+                        Checkify Beta 1.0
+                        <small>(Best checkout ever)</small>
+                      </span>
+                    }
+                    checked={shippingOptionsValue === 'beta1'}
+                    id="beta1"
+                    name="beta1"
+                    onChange={handleShippingOptionsValue}
+                  />
+
+                  <RadioButton
+                    label={
+                      <span>
+                        Checkify Beta 2.0
+                        <small>(⭐⭐ Best checkout ever)</small>
+                      </span>
+                    }
+                    checked={shippingOptionsValue === 'beta2'}
+                    id="beta2"
+                    name="beta2"
+                    onChange={handleShippingOptionsValue}
+                  />
+
+                  <RadioButton
+                    label={
+                      <span>
+                        Checkify Pro
+                        <small>(⭐⭐⭐ Best checkout ever)</small>
+                      </span>
+                    }
+                    checked={shippingOptionsValue === 'pro'}
+                    id="pro"
+                    name="pro"
+                    onChange={handleShippingOptionsValue}
+                  />
+                </Stack>
+              </Card>
+            </div>
+
+            <div className='Billing-Address'>
+              <h1 className='Checikfy-Heading'>Billing Details</h1>
+
+              <Card sectioned>
+                <Checkbox
+                  label="Billing address is the same as shipping"
+                  checked={isBillingAddressSame}
+                  onChange={handleIsBillingAddressSame}
+                />
+                {!isBillingAddressSame &&
+                  <BillingForm billingDetails={billingDetails} handleBillingDetails={handleBillingDetails} />}
+              </Card>
+            </div>
+
+            <div className='Test-Section'>
+              <Card sectioned>
+                <Stack vertical>
+                  <div className='Test-Grids'>
+                    <div className='Test-Logo-Section'>
+                      <img src={card} alt="gift" className='Test-Img' />
+                    </div>
+                    <div>
+                      <h1 className='Checikfy-Heading'>Test Checkify with Stripe Payment Methods</h1>
+                      <p>Credit card number: 4242 4242 4242 4242 || Date: 02/24 || CVV: 222 /// For testing SEPA Direct Debit use AT321904300235473204</p>
+                    </div>
+                  </div>
+
+                  <div className='Test-Grids'>
+                    <div className='Test-Logo-Section'>
+                      <img src={paypal} alt="gift" className='Test-Img' />
+                    </div>
+                    <div>
+                      <h1 className='Checikfy-Heading'>Test Checkify with PayPal</h1>
+                      <p>For testing PayPal payment flow you need to have PayPal sandbox account https://www.sandbox.paypal.com/</p>
+                    </div>
+                  </div>
+
+                  <div className='Test-Grids'>
+                    <div className='Test-Logo-Section'>
+                      <img src={gift} alt="gift" className='Test-Img' />
+                    </div>
+                    <div>
+                      <h1 className='Checikfy-Heading'>Get a free gift!</h1>
+                      <p>Test our checkout seven days for free!</p>
+                    </div>
+                  </div>
+                </Stack>
+              </Card>
+            </div>
           </Layout.Section>
 
           <Layout.Section secondary>

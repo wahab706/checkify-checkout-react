@@ -1,4 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+
 :root {
+    --checkify-select-color: #61CEB4;
     --pay-btn-card-border-color: #EBEBEB;
     --pay-btn-card-bg-color: rgba(236, 237, 244, 0.3);
     --link-btn-bg-color: #33DDB3;
@@ -47,14 +50,19 @@
     padding: 0;
 }
 
-.Home-Page {
+.Checkout-Page {
     margin-top: 70px;
 }
 
 @media (min-width: 900px) {
-    .Home-Page {
+    .Checkout-Page {
         margin-top: 15px;
     }
+}
+
+.Checkout-Page .Polaris-Card {
+    box-shadow: 0px 2px 5px rgb(0 0 0 / 10%);
+    border-radius: 5px;
 }
 
 .Logo-Container {
@@ -122,6 +130,10 @@
 @media (min-width: 768px) {
     .container .Polaris-Layout__Section {
         max-width: 58%;
+    }
+
+    .Strong-Demand-Announcement {
+        padding-bottom: 0px;
     }
 
     .Announcement-Top {
@@ -269,16 +281,126 @@
     background-color: var(--pay-another-way-text-color);
 }
 
-.Shipping-Details {
+.Checkout-Page .Shipping-Details,
+.Checkout-Page .Shipping-Options,
+.Checkout-Page .Billing-Address {
     margin-top: 1rem;
 }
 
-.Shipping-Details-Heading {
+.Shipping-Details .Polaris-Card,
+.Shipping-Options .Polaris-Card,
+.Billing-Address .Polaris-Card {
+    margin-top: 1rem;
+}
+
+.Checkout-Page .Shipping-Details .Polaris-Card {
+    margin-top: 0.5rem;
+}
+
+.Checkout-Page .Shipping-Details .Strong-Demand-Announcement .Polaris-Card {
+    margin-top: 0;
+}
+
+.Checkout-Page .Polaris-Checkbox__Backdrop,
+.Checkout-Page .Polaris-RadioButton__Backdrop {
+    border-color: #EBEBEB;
+}
+
+.Checkout-Page .Polaris-Checkbox__Backdrop::before,
+.Checkout-Page .Polaris-RadioButton__Backdrop::before {
+    background-color: var(--checkify-select-color);
+}
+
+.Checkout-Page .Polaris-Checkbox__Input:active:not(:disabled)+.Polaris-Checkbox__Backdrop,
+.Checkout-Page .Polaris-Checkbox__Input:checked+.Polaris-Checkbox__Backdrop,
+.Checkout-Page .Polaris-Checkbox__Input.Polaris-Checkbox__Input--indeterminate+.Polaris-Checkbox__Backdrop,
+.Checkout-Page .Polaris-RadioButton__Input:checked+.Polaris-RadioButton__Backdrop {
+    border-color: var(--checkify-select-color);
+}
+
+.Checkout-Page .Checikfy-Heading {
     margin: 5px 0;
     color: black;
     font-size: 18px;
-    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;
     line-height: 1.167;
-    letter-spacing: -0.01562em;
+    letter-spacing: 0.5px;
+}
+
+.Shipping-Options .Polaris-Choice__Label .Polaris-Text--root span {
+    display: flex;
+}
+
+.Checkout-Page .Shipping-Options .Polaris-Text--root,
+.Checkout-Page .Polaris-Choice__Label .Polaris-Text--root {
+    color: black;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+}
+
+.Shipping-Options .Polaris-Choice__Label .Polaris-Text--root small {
+    margin-left: 4px;
+    color: black;
+    opacity: 0.5;
+    font-size: 12px;
+}
+
+.Billing-Address .Billing-Form {
+    margin-top: 20px;
+}
+
+.Checkout-Page .Test-Section {
+    margin-top: 25px;
+}
+
+.Checkout-Page .Test-Section .Polaris-Card {
+    border: 1px solid #EBEBEB;
+    /* padding: 30px 0; */
+    margin-top: 30px;
+    /* padding-left: 20px; */
+    border-radius: 5px;
+    padding-right: 20px;
+    background-color: rgba(236, 237, 244, 0.3);
+    box-shadow: none;
+}
+
+.Test-Section .Test-Grids {
+    display: flex;
+    padding-bottom: 20px;
+}
+
+@media (max-width: 767px) {
+    .Test-Section .Test-Grids {
+        text-align: center;
+        align-items: center;
+        flex-direction: column;
+
+    }
+}
+
+.Test-Section .Polaris-Stack .Test-Logo-Section {
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    flex-shrink: 0;
+    margin-right: 20px;
+}
+
+.Test-Logo-Section .Test-Img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.Test-Section .Polaris-Stack .Checikfy-Heading {
+    margin-top: 1rem;
+}
+
+.Test-Section .Polaris-Stack p {
+    color: black;
+    opacity: 0.6;
+    font-size: 14px;
 }
