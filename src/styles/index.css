@@ -732,3 +732,32 @@
     width: 22px;
     height: 22px;
 }
+
+.Order-Total-Section {
+    margin-top: 1rem;
+    font-size: 16px;
+    border-top: 1px solid #EBEBEB;
+    padding-top: 15px;
+    padding-bottom: 0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Order-Total-Section p {
+    color: black;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.Order-Total-Section p .Order-Price {
+    margin-left: 5px;
+}
+
+.Order-Total-Section .Order-Price-Currency {
+    font-size: 14px;
+    margin-left: 3px;
+    font-weight: normal;
+}

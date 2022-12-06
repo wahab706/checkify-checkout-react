@@ -309,7 +309,20 @@ export default function HomePage() {
                   </Stack>
                 </div>
 
-                {ProductWarrantyOptions(oneYearwarranty, handleOneYearWarraty, buy1Get1warranty, handleBuy1Get1warranty)}
+                <div>
+                  {ProductWarrantyOptions(oneYearwarranty, handleOneYearWarraty, buy1Get1warranty, handleBuy1Get1warranty)}
+                </div>
+
+                <div className='Order-Total-Section'>
+                  <p>Total</p>
+                  <p>
+                    <span className='Order-Price-Currency'>EUR</span>
+                    <span className='Order-Price'>
+                      €70.85
+                    </span>
+                    <span className='Order-Price-Currency'>(~ PKR 16751)</span>
+                  </p>
+                </div>
               </Card>
             </div>
 
