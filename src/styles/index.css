@@ -1,4 +1,24 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap'); */
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('/fonts/KFOlCnqEu92Fr1MmEU9fBBc4.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('/fonts/KFOlCnqEu92Fr1MmWUlfBBc4.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('/fonts/KFOmCnqEu92Fr1Mu4mxK.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('/fonts/Roboto-Regular.ttf') format('woff2');
+}
 
 :root {
     --checkify-select-color: #61CEB4;
@@ -11,6 +31,7 @@
     --pay-another-way-text-color: #FAFAFA;
     --strong-demand-announcement-bg-color: #FFE7D1;
     --strong-demand-announcement-text-color: #FF5A50;
+    --form-input-border-color: #ECEDF4;
 
 }
 
@@ -145,7 +166,8 @@
     }
 }
 
-.PayButton .Polaris-Card {
+.PayButton .Polaris-Card,
+.Order-Summary-InnerCards .Polaris-Card {
     border: 1px solid var(--pay-btn-card-border-color);
     border-radius: 7px;
     box-shadow: none;
@@ -320,12 +342,28 @@
 
 .Checkout-Page .Checikfy-Heading {
     margin: 5px 0;
-    color: black;
+    color: #000;
     font-size: 18px;
-    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Roboto', sans-serif; */
+    /* font-family: Roboto; */
     font-weight: bold;
     line-height: 1.167;
-    letter-spacing: 0.5px;
+}
+
+.Shipping-Options .Polaris-Stack__Item .Polaris-Choice,
+.Shipping-Options .Polaris-Stack__Item .Polaris-Choice .Polaris-Choice__Label,
+.Shipping-Options .Polaris-Stack__Item .Polaris-Choice {
+    width: 100%;
+}
+
+.Shipping-Options .Shipping-Options-Description {
+    display: flex;
+    justify-content: space-between;
+}
+
+.Shipping-Options .Shipping-Options-Description .Shipping-Options-Description-Price {
+    color: var(--checkify-select-color);
+    font-weight: 500;
 }
 
 .Shipping-Options .Polaris-Choice__Label .Polaris-Text--root span {
@@ -334,17 +372,17 @@
 
 .Checkout-Page .Shipping-Options .Polaris-Text--root,
 .Checkout-Page .Polaris-Choice__Label .Polaris-Text--root {
-    color: black;
+    color: #000;
     font-size: 14px;
-    font-family: 'Roboto', sans-serif;
+    /* font-family: Roboto; */
     font-weight: 500;
     line-height: 1.5;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.00938em;
 }
 
 .Shipping-Options .Polaris-Choice__Label .Polaris-Text--root small {
     margin-left: 4px;
-    color: black;
+    color: #000;
     opacity: 0.5;
     font-size: 12px;
 }
@@ -359,9 +397,7 @@
 
 .Checkout-Page .Test-Section .Polaris-Card {
     border: 1px solid #EBEBEB;
-    /* padding: 30px 0; */
     margin-top: 30px;
-    /* padding-left: 20px; */
     border-radius: 5px;
     padding-right: 20px;
     background-color: rgba(236, 237, 244, 0.3);
@@ -400,7 +436,39 @@
 }
 
 .Test-Section .Polaris-Stack p {
-    color: black;
+    color: #000;
     opacity: 0.6;
     font-size: 14px;
+}
+
+.Checkout-Page .Footer-Section {
+    margin: 1rem 0;
+}
+
+.Footer-Section .Polaris-Stack {
+    justify-content: center;
+}
+
+.Footer-Section .Footer-Item {
+    padding: 5px;
+}
+
+.Footer-Section .Footer-Item a {
+    color: #000;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+    transition: opacity 0.3ms ease-out;
+    text-decoration: none;
+}
+
+.Checkout-Page .Polaris-FormLayout__Items .Polaris-TextField__Backdrop {
+    border-color: var(--form-input-border-color);
+    background-color: rgba(251, 251, 255, 0.8);
+}
+
+
+.Checkout-Page .Order-Summary .Polaris-Card {
+    margin-top: 1rem;
 }

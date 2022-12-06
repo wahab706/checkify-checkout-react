@@ -137,9 +137,14 @@ export default function HomePage() {
                 <Stack vertical>
                   <RadioButton
                     label={
-                      <span>
-                        Checkify Beta 1.0
-                        <small>(Best checkout ever)</small>
+                      <span className='Shipping-Options-Description'>
+                        <span>
+                          Checkify Beta 1.0
+                          <small>(Best checkout ever)</small>
+                        </span>
+                        <span className='Shipping-Options-Description-Price'>
+                          Free
+                        </span>
                       </span>
                     }
                     checked={shippingOptionsValue === 'beta1'}
@@ -150,9 +155,14 @@ export default function HomePage() {
 
                   <RadioButton
                     label={
-                      <span>
-                        Checkify Beta 2.0
-                        <small>(⭐⭐ Best checkout ever)</small>
+                      <span className='Shipping-Options-Description'>
+                        <span>
+                          Checkify Beta 2.0
+                          <small>(⭐⭐ Best checkout ever)</small>
+                        </span>
+                        <span className='Shipping-Options-Description-Price'>
+                          Free
+                        </span>
                       </span>
                     }
                     checked={shippingOptionsValue === 'beta2'}
@@ -163,9 +173,14 @@ export default function HomePage() {
 
                   <RadioButton
                     label={
-                      <span>
-                        Checkify Pro
-                        <small>(⭐⭐⭐ Best checkout ever)</small>
+                      <span className='Shipping-Options-Description'>
+                        <span>
+                          Checkify Pro
+                          <small>(⭐⭐⭐ Best checkout ever)</small>
+                        </span>
+                        <span>
+                          €29.90
+                        </span>
                       </span>
                     }
                     checked={shippingOptionsValue === 'pro'}
@@ -226,12 +241,35 @@ export default function HomePage() {
                 </Stack>
               </Card>
             </div>
+
+            <div className='Footer-Section'>
+              <Stack>
+                <span className='Footer-Item'>
+                  <a class="jss142" href="https://checkify.pro/en/data-processing-agreement" target="_blank" rel="noreferrer">Refund policy</a>
+                </span>
+                <span className='Footer-Item'>
+                  <a class="jss142" href="https://checkify.pro/en/privacy-policy" target="_blank" rel="noreferrer">Privacy policy</a>
+                </span>
+                <span className='Footer-Item'>
+                  <a class="jss142" href="https://checkify.pro/en/terms-of-use" target="_blank" rel="noreferrer">Terms of service</a>
+                </span>
+              </Stack>
+            </div>
           </Layout.Section>
 
           <Layout.Section secondary>
-            <Card title="Tags" sectioned>
-              <p>Add tags to your order.</p>
-            </Card>
+            <div className='Order-Summary'>
+              <h1 className='Checikfy-Heading'>Order Summary</h1>
+              <Card sectioned>
+                <div className='Order-Summary-InnerCards'>
+                  <Card sectioned>
+
+                  </Card>
+                </div>
+              </Card>
+            </div>
+
+
           </Layout.Section>
         </Layout>
       </Page>
