@@ -1,4 +1,4 @@
-import { Page, Layout, Card, Stack, Button, Checkbox, RadioButton } from '@shopify/polaris';
+import { Page, Layout, Card, Stack, Button, Checkbox, RadioButton, TextField } from '@shopify/polaris';
 import React, { useState, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import chekifyLogo from '../assets/chekifyLogo.svg'
@@ -34,6 +34,12 @@ export default function HomePage() {
   const [signUpExclusive, setSignUpExclusive] = useState(true);
   const [isBillingAddressSame, setIsBillingAddressSame] = useState(true);
   const [shippingOptionsValue, setShippingOptionsValue] = useState('pro');
+  const [discountCode, setDiscountCode] = useState();
+  const [oneYearwarranty, setOneYearWarraty] = useState(false);
+  const [buy1Get1warranty, setBuy1Get1warranty] = useState(true);
+
+
+
 
   const handleShippingDetails = (e) => {
     setShippingDetails({ ...shippingDetails, [e.target.name]: e.target.value })
@@ -46,13 +52,9 @@ export default function HomePage() {
   const handleSignUpExclusive = useCallback((newChecked) => setSignUpExclusive(newChecked), []);
   const handleIsBillingAddressSame = useCallback((newChecked) => setIsBillingAddressSame(newChecked), []);
   const handleShippingOptionsValue = useCallback((_checked, newValue) => setShippingOptionsValue(newValue), [],);
-
-
-
-
-  useEffect(() => {
-    console.log(signUpExclusive);
-  }, [signUpExclusive])
+  const handleDiscountCode = useCallback((newValue) => setDiscountCode(newValue), []);
+  const handleOneYearWarraty = useCallback((newChecked) => setOneYearWarraty(newChecked), []);
+  const handleBuy1Get1warranty = useCallback((newChecked) => setBuy1Get1warranty(newChecked), []);
 
 
 
@@ -245,13 +247,13 @@ export default function HomePage() {
             <div className='Footer-Section'>
               <Stack>
                 <span className='Footer-Item'>
-                  <a class="jss142" href="https://checkify.pro/en/data-processing-agreement" target="_blank" rel="noreferrer">Refund policy</a>
+                  <a className="jss142" href="https://checkify.pro/en/data-processing-agreement" target="_blank" rel="noreferrer">Refund policy</a>
                 </span>
                 <span className='Footer-Item'>
-                  <a class="jss142" href="https://checkify.pro/en/privacy-policy" target="_blank" rel="noreferrer">Privacy policy</a>
+                  <a className="jss142" href="https://checkify.pro/en/privacy-policy" target="_blank" rel="noreferrer">Privacy policy</a>
                 </span>
                 <span className='Footer-Item'>
-                  <a class="jss142" href="https://checkify.pro/en/terms-of-use" target="_blank" rel="noreferrer">Terms of service</a>
+                  <a className="jss142" href="https://checkify.pro/en/terms-of-use" target="_blank" rel="noreferrer">Terms of service</a>
                 </span>
               </Stack>
             </div>
@@ -263,9 +265,51 @@ export default function HomePage() {
               <Card sectioned>
                 <div className='Order-Summary-InnerCards'>
                   <Card sectioned>
+                    <div className='Order-Product-Details'>
+                      <Stack>
+                        <div className='Order-Product-Image-Section'>
+                          <div className='Order-Product-Image'>
+                            <img src="https://cdn.shopify.com/s/files/1/0516/2831/0707/products/14-1.jpg?v=1665588654&width=100" alt="product" />
+                          </div>
 
+                          <div className='Order-Quantity'>1</div>
+                        </div>
+                        <div className='Order-Product-Detail-Section'>
+                          <div className='Product-Title-Section'>
+                            <h2 className='Product-Title'>Aglaonema Plant</h2>
+                            <h2 className='Product-Title'>€35.00</h2>
+                          </div>
+                          <h3 className='Product-Extras'>Old</h3>
+                        </div>
+                      </Stack>
+                    </div>
+
+                    {DiscountCode(discountCode, handleDiscountCode)}
                   </Card>
                 </div>
+
+                <div className='Order-Prices-Section'>
+                  <Stack>
+                    <span>Subtotal</span>
+                    <span>€35.00</span>
+                  </Stack>
+                  <Stack>
+                    <span className='Order-Prices-Dual'>
+                      VAT
+                      <span className='Order-Prices-Percentage'>17.00%</span>
+                    </span>
+                    <span>€5.95</span>
+                  </Stack>
+                  <Stack>
+                    <span className='Order-Prices-Dual'>
+                      Checkify Pro
+                      <span className='Order-Prices-Percentage'>⭐⭐⭐ Best checkout ever</span>
+                    </span>
+                    <span>€29.90</span>
+                  </Stack>
+                </div>
+
+                {ProductWarrantyOptions(oneYearwarranty, handleOneYearWarraty, buy1Get1warranty, handleBuy1Get1warranty)}
               </Card>
             </div>
 
@@ -286,5 +330,101 @@ function Announement() {
         </div>
       </Card>
     </div>
+  )
+}
+
+function DiscountCode(discountCode, handleDiscountCode) {
+  return (
+    <div className='Discount-Input-Section'>
+      <div className='Discount-Input-Section-Inner'>
+        <div className='Discount-Input'>
+          {/* <label htmlFor="discount">Discount Code</label>
+          <span>
+            <input type="text"
+              id='discount'
+              value={discountCode}
+              onChange={handleDiscountCode}
+            />
+          </span> */}
+          <TextField
+            placeholder='Discount Code'
+            value={discountCode}
+            onChange={handleDiscountCode}
+            autoComplete="off"
+          />
+        </div>
+        {discountCode ?
+          <Button> Apply Code</Button>
+          :
+          <Button disabled> Apply Code </Button>
+        }
+      </div>
+    </div>
+  )
+}
+
+function ProductWarrantyOptions(oneYearwarranty, handleOneYearWarraty, buy1Get1warranty, handleBuy1Get1warranty) {
+  return (
+    <>
+      <div className='Order-Summary-InnerCards Warranty-Options'>
+        <Card sectioned>
+          <Checkbox
+            label={
+              <div className='Order-Product-Details'>
+                <Stack>
+                  <div className='Order-Product-Image-Section'>
+                    <div className='Order-Product-Image'>
+                      <img src="https://cdn.shopify.com/s/files/1/0516/2831/0707/files/Extended-Warranty-1year-widcare.png?v=1660557379&width=100" alt="product" />
+                    </div>
+                  </div>
+                  <div className='Order-Product-Detail-Section'>
+                    <div className='Product-Title-Section'>
+                      <span className='Product-Title'>
+                        1 Year Extended Warranty
+                        <h3 className='Product-Extras'>This limited warranty applies to any repair or replacement item.</h3>
+                      </span>
+                      <h2 className='Product-Title'>€4.99</h2>
+                    </div>
+
+                  </div>
+                </Stack>
+              </div>
+            }
+            checked={oneYearwarranty}
+            onChange={handleOneYearWarraty}
+          />
+        </Card>
+      </div>
+
+      <div className='Order-Summary-InnerCards Warranty-Options'>
+        <Card sectioned>
+          <Checkbox
+            label={
+              <div className='Order-Product-Details'>
+                <Stack>
+                  <div className='Order-Product-Image-Section'>
+                    <div className='Order-Product-Image'>
+                      <img src="https://cdn.shopify.com/s/files/1/0516/2831/0707/products/14-1.jpg?v=1665588654&width=40&width=100" alt="product" />
+                    </div>
+                  </div>
+                  <div className='Order-Product-Detail-Section'>
+                    <div className='Product-Title-Section'>
+                      <span className='Product-Title'>
+                        Buy 1 Get 2 - Aglaonema Plant
+                        <h3 className='Product-Extras'>Special offer for you</h3>
+                      </span>
+                      <h2 className='Product-Title'>Free</h2>
+                    </div>
+
+                  </div>
+                </Stack>
+              </div>
+            }
+            checked={buy1Get1warranty}
+            onChange={handleBuy1Get1warranty}
+          />
+        </Card>
+      </div>
+    </>
   )
 }
