@@ -207,6 +207,7 @@ export default function HomePage() {
                 <span className={`${isBillingAddressSame ? 'visually-hidden' : ''}`}>
                   <BillingForm billingDetails={billingDetails} handleBillingDetails={handleBillingDetails} />
                 </span>
+                
               </Card>
             </div>
 
