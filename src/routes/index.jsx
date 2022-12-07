@@ -204,7 +204,7 @@ export default function HomePage() {
                   onChange={handleIsBillingAddressSame}
                 />
 
-                <span className={`${isBillingAddressSame && 'visually-hidden'}`}>
+                <span className={`${isBillingAddressSame ? 'visually-hidden' : ' '}`}>
                   <BillingForm billingDetails={billingDetails} handleBillingDetails={handleBillingDetails} />
                 </span>
 
@@ -313,7 +313,8 @@ export default function HomePage() {
                 </div>
 
                 <div>
-                  {ProductWarrantyOptions(oneYearwarranty, handleOneYearWarraty, buy1Get1warranty, handleBuy1Get1warranty)}
+                  {ProductWarrantyOption1(oneYearwarranty, handleOneYearWarraty)}
+                  {ProductWarrantyOption2(buy1Get1warranty, handleBuy1Get1warranty)}
                 </div>
 
                 <div className='Order-Total-Section'>
@@ -379,68 +380,70 @@ function DiscountCode(discountCode, handleDiscountCode) {
   )
 }
 
-function ProductWarrantyOptions(oneYearwarranty, handleOneYearWarraty, buy1Get1warranty, handleBuy1Get1warranty) {
+function ProductWarrantyOption1(oneYearwarranty, handleOneYearWarraty) {
   return (
-    <>
-      <div className='Order-Summary-InnerCards Warranty-Options'>
-        <Card sectioned>
-          <Checkbox
-            label={
-              <div className='Order-Product-Details'>
-                <Stack>
-                  <div className='Order-Product-Image-Section'>
-                    <div className='Order-Product-Image'>
-                      <img src="https://cdn.shopify.com/s/files/1/0516/2831/0707/files/Extended-Warranty-1year-widcare.png?v=1660557379&width=100" alt="product" />
-                    </div>
+    <div className='Order-Summary-InnerCards Warranty-Options'>
+      <Card sectioned>
+        <Checkbox
+          label={
+            <div className='Order-Product-Details'>
+              <Stack>
+                <div className='Order-Product-Image-Section'>
+                  <div className='Order-Product-Image'>
+                    <img src="https://cdn.shopify.com/s/files/1/0516/2831/0707/files/Extended-Warranty-1year-widcare.png?v=1660557379&width=100" alt="product" />
                   </div>
-                  <div className='Order-Product-Detail-Section'>
-                    <div className='Product-Title-Section'>
-                      <span className='Product-Title'>
-                        1 Year Extended Warranty
-                        <h3 className='Product-Extras'>This limited warranty applies to any repair or replacement item.</h3>
-                      </span>
-                      <h2 className='Product-Title'>€4.99</h2>
-                    </div>
+                </div>
+                <div className='Order-Product-Detail-Section'>
+                  <div className='Product-Title-Section'>
+                    <span className='Product-Title'>
+                      1 Year Extended Warranty
+                      <h3 className='Product-Extras'>This limited warranty applies to any repair or replacement item.</h3>
+                    </span>
+                    <h2 className='Product-Title'>€4.99</h2>
+                  </div>
 
-                  </div>
-                </Stack>
-              </div>
-            }
-            checked={oneYearwarranty}
-            onChange={handleOneYearWarraty}
-          />
-        </Card>
-      </div>
+                </div>
+              </Stack>
+            </div>
+          }
+          checked={oneYearwarranty}
+          onChange={handleOneYearWarraty}
+        />
+      </Card>
+    </div>
+  )
+}
 
-      <div className='Order-Summary-InnerCards Warranty-Options'>
-        <Card sectioned>
-          <Checkbox
-            label={
-              <div className='Order-Product-Details'>
-                <Stack>
-                  <div className='Order-Product-Image-Section'>
-                    <div className='Order-Product-Image'>
-                      <img src="https://cdn.shopify.com/s/files/1/0516/2831/0707/products/14-1.jpg?v=1665588654&width=40&width=100" alt="product" />
-                    </div>
+function ProductWarrantyOption2(buy1Get1warranty, handleBuy1Get1warranty) {
+  return (
+    <div className='Order-Summary-InnerCards Warranty-Options'>
+      <Card sectioned>
+        <Checkbox
+          label={
+            <div className='Order-Product-Details'>
+              <Stack>
+                <div className='Order-Product-Image-Section'>
+                  <div className='Order-Product-Image'>
+                    <img src="https://cdn.shopify.com/s/files/1/0516/2831/0707/products/14-1.jpg?v=1665588654&width=40&width=100" alt="product" />
                   </div>
-                  <div className='Order-Product-Detail-Section'>
-                    <div className='Product-Title-Section'>
-                      <span className='Product-Title'>
-                        Buy 1 Get 2 - Aglaonema Plant
-                        <h3 className='Product-Extras'>Special offer for you</h3>
-                      </span>
-                      <h2 className='Product-Title'>Free</h2>
-                    </div>
+                </div>
+                <div className='Order-Product-Detail-Section'>
+                  <div className='Product-Title-Section'>
+                    <span className='Product-Title'>
+                      Buy 1 Get 2 - Aglaonema Plant
+                      <h3 className='Product-Extras'>Special offer for you</h3>
+                    </span>
+                    <h2 className='Product-Title'>Free</h2>
+                  </div>
 
-                  </div>
-                </Stack>
-              </div>
-            }
-            checked={buy1Get1warranty}
-            onChange={handleBuy1Get1warranty}
-          />
-        </Card>
-      </div>
-    </>
+                </div>
+              </Stack>
+            </div>
+          }
+          checked={buy1Get1warranty}
+          onChange={handleBuy1Get1warranty}
+        />
+      </Card>
+    </div>
   )
 }
