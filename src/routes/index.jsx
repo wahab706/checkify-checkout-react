@@ -38,9 +38,6 @@ export default function HomePage() {
   const [oneYearwarranty, setOneYearWarraty] = useState(false);
   const [buy1Get1warranty, setBuy1Get1warranty] = useState(true);
 
-
-
-
   const handleShippingDetails = (e) => {
     setShippingDetails({ ...shippingDetails, [e.target.name]: e.target.value })
   }
@@ -56,6 +53,9 @@ export default function HomePage() {
   const handleOneYearWarraty = useCallback((newChecked) => setOneYearWarraty(newChecked), []);
   const handleBuy1Get1warranty = useCallback((newChecked) => setBuy1Get1warranty(newChecked), []);
 
+  useEffect(() => {
+    console.log(isBillingAddressSame);
+  }, [isBillingAddressSame])
 
 
   return (
@@ -203,8 +203,10 @@ export default function HomePage() {
                   checked={isBillingAddressSame}
                   onChange={handleIsBillingAddressSame}
                 />
-                {!isBillingAddressSame &&
-                  <BillingForm billingDetails={billingDetails} handleBillingDetails={handleBillingDetails} />}
+
+                <span className={`${isBillingAddressSame ? 'visually-hidden' : ''}`}>
+                  <BillingForm billingDetails={billingDetails} handleBillingDetails={handleBillingDetails} />
+                </span>
               </Card>
             </div>
 

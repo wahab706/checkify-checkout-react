@@ -23,6 +23,11 @@
     padding-right: 15px;
 }
 
+.visually-hidden{
+    display: none !important;
+    opacity: 0 !important;
+}
+
 @media (min-width: 576px) {
     .container {
         max-width: 540px;
