@@ -204,10 +204,10 @@ export default function HomePage() {
                   onChange={handleIsBillingAddressSame}
                 />
 
-                <span className={`${isBillingAddressSame ? 'visually-hidden' : ''}`}>
+                <span className={`${isBillingAddressSame && 'visually-hidden'}`}>
                   <BillingForm billingDetails={billingDetails} handleBillingDetails={handleBillingDetails} />
                 </span>
-                
+
               </Card>
             </div>
 
