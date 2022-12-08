@@ -1,11 +1,23 @@
-import React from 'react'
-import { Form, FormLayout } from '@shopify/polaris';
+import React, { useMemo, useEffect } from 'react'
+import { Form, FormLayout, Select, } from '@shopify/polaris';
+import countryList from 'react-select-country-list'
 
 export function ShippingForm({ shippingDetails, handleShippingDetails }) {
+    const options = useMemo(() => countryList().getData(), [])
+
+    useEffect(() => {
+
+        {
+            options?.map((item) => {
+                console.log('value: ', item.value, 'label: ', item.label);
+            })
+        }
+    }, [options])
+
+
     return (
         <Form>
             <FormLayout>
-
                 <FormLayout.Group>
                     <div className="Polaris-Connected">
                         <div className="Polaris-Connected__Item Polaris-Connected__Item--primary">
@@ -16,6 +28,7 @@ export function ShippingForm({ shippingDetails, handleShippingDetails }) {
                                     onChange={handleShippingDetails}
                                     placeholder='Email'
                                     aria-invalid="false"
+                                    required
                                     className="Polaris-TextField__Input"
                                 />
                                 <div className="Polaris-TextField__Backdrop"> </div>
@@ -34,6 +47,7 @@ export function ShippingForm({ shippingDetails, handleShippingDetails }) {
                                     onChange={handleShippingDetails}
                                     placeholder='First Name'
                                     aria-invalid="false"
+                                    required
                                     className="Polaris-TextField__Input"
                                 />
                                 <div className="Polaris-TextField__Backdrop"> </div>
@@ -50,6 +64,7 @@ export function ShippingForm({ shippingDetails, handleShippingDetails }) {
                                     onChange={handleShippingDetails}
                                     placeholder='Last Name'
                                     aria-invalid="false"
+                                    required
                                     className="Polaris-TextField__Input"
                                 />
                                 <div className="Polaris-TextField__Backdrop"> </div>
@@ -68,6 +83,7 @@ export function ShippingForm({ shippingDetails, handleShippingDetails }) {
                                     onChange={handleShippingDetails}
                                     placeholder='Address'
                                     aria-invalid="false"
+                                    required
                                     className="Polaris-TextField__Input"
                                 />
                                 <div className="Polaris-TextField__Backdrop"> </div>
@@ -87,6 +103,7 @@ export function ShippingForm({ shippingDetails, handleShippingDetails }) {
                                     onChange={handleShippingDetails}
                                     placeholder='City'
                                     aria-invalid="false"
+                                    required
                                     className="Polaris-TextField__Input"
                                 />
                                 <div className="Polaris-TextField__Backdrop"> </div>
@@ -106,9 +123,12 @@ export function ShippingForm({ shippingDetails, handleShippingDetails }) {
                                     className="Polaris-Select__Input"
                                     aria-invalid="false">
 
-                                    <option value="pakistan">Pakistan</option>
-                                    <option value="india">India</option>
-                                    <option value="china">China</option>
+                                    {options?.map((item) => {
+                                        return (
+                                            <option value={item.label}> {item.label}</option>
+                                        )
+                                    })}
+
                                 </select>
                                 <div className="Polaris-Select__Content" aria-hidden="true">
                                     <span className="Polaris-Select__SelectedOption">{shippingDetails.country}</span>
@@ -137,6 +157,7 @@ export function ShippingForm({ shippingDetails, handleShippingDetails }) {
                                     onChange={handleShippingDetails}
                                     placeholder='State'
                                     aria-invalid="false"
+                                    required
                                     className="Polaris-TextField__Input"
                                 />
                                 <div className="Polaris-TextField__Backdrop"> </div>
@@ -153,6 +174,7 @@ export function ShippingForm({ shippingDetails, handleShippingDetails }) {
                                     onChange={handleShippingDetails}
                                     placeholder='Zip Code'
                                     aria-invalid="false"
+                                    required
                                     className="Polaris-TextField__Input"
                                 />
                                 <div className="Polaris-TextField__Backdrop"> </div>
