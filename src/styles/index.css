@@ -9,6 +9,8 @@
     --link-btn-bg-hover-color: #31e4b8;
     --paypal-btn-bg-color: #FFC439;
     --paypal-btn-bg-hover-color: #F2BA36;
+    --buyNow-btn-bg-color: #32325d;
+    --buyNow-btn-bg-hover-color: #6A488A;
     --pay-another-way-text-color: #FAFAFA;
     --strong-demand-announcement-bg-color: #FFE7D1;
     --strong-demand-announcement-text-color: #FF5A50;
@@ -197,8 +199,7 @@
 .PaypalButton button {
     background-color: var(--paypal-btn-bg-color);
     transition: background-color .15s ease;
-    max-height: 64px;
-    min-height: 32px;
+    height: 45px;
 }
 
 .PaypalButton button:hover {
@@ -221,6 +222,39 @@
     line-height: 22px;
     margin-top: -3px;
     margin-left: 4px;
+}
+
+.BuyNowButton button {
+    background-color: var(--buyNow-btn-bg-color);
+    transition: background-color .15s ease;
+    height: 40px;
+    font: 500 16px/21px -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif;
+}
+
+.BuyNowButton button:hover {
+    background-color: var(--buyNow-btn-bg-hover-color);
+}
+
+.BuyNowButton .BuyNowButton-Text {
+    position: relative;
+    transition-duration: .25s;
+    transition-property: font-size, color, opacity;
+    will-change: opacity;
+    z-index: 10;
+    font-size: 16px;
+    margin-top: -2px;
+    color: #fff;
+}
+
+.BuyNowButton .BuyNowButton-Icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin: 0 -1px -1px 7px;
+    position: relative;
+    will-change: opacity;
+    z-index: 10;
+    aspect-ratio: auto 20 / 20;
 }
 
 
@@ -276,6 +310,7 @@
 .Checkout-Page .Shipping-Details .Polaris-TextField input::placeholder,
 .Checkout-Page .Billing-Address .Polaris-TextField input::placeholder {
     font-size: 14px;
+    font-weight: 600;
 }
 
 .Shipping-Details .Polaris-Card,
@@ -455,18 +490,13 @@
     fill: #ccc;
 }
 
-.Checkout-Page .Order-Summary-Desktop {
-    display: none;
-}
-
 .Checkout-Page .Discount-Mobile {
     margin: 1rem 0;
 }
 
 .Checkout-Page .Product-Offers-Mobile,
 .Checkout-Page .Discount-Mobile {
-    display: flex;
-    flex-direction: column;
+    display: none;
 }
 
 .Checkout-Page .Product-Offers-Mobile .Polaris-Card .Polaris-Card__Section,
@@ -485,6 +515,10 @@
     padding: 10px 0;
 }
 
+.Checkout-Page .Warranty-Options .Warranty-Options-Mobile {
+    display: none;
+}
+
 .Checkout-Page .Product-Offers-Mobile .Polaris-Card .Warranty-Options:not(:last-of-type) {
     border-bottom: 1px solid #EBEBEB;
 }
@@ -495,9 +529,69 @@
     align-items: center;
 }
 
-.Checkout-Page .Order-Summary-Desktop .Polaris-Card {
+.Checkout-Page .Warranty-Options .Polaris-Card {
     margin-top: 1rem;
 }
+
+.Checkout-Page .Order-Summary .Polaris-Card {
+    margin-top: 10px;
+}
+
+.Checkout-Page .Order-Summary .Subdued-Card-Section .Polaris-Card {
+    margin-top: 0;
+}
+
+.Checkout-Page .Order-Summary .Header-Mobile {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 12px;
+    transform: translate(0);
+    box-shadow: 0px 2px 5px rgb(0 0 0 / 10%);
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 5px;
+    justify-content: space-between;
+}
+
+.Checkout-Page .Order-Summary .Header-Mobile .Total-Price {
+    color: #fff;
+    display: flex;
+    padding: 5px 7px;
+    font-size: 14px;
+    background: #61CEB4;
+    margin-top: 5px;
+    align-items: center;
+    font-weight: bold;
+    margin-left: 7px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.Checkout-Page .Order-Summary .Header-Mobile .Panel-Status {
+    display: flex;
+    align-items: center;
+}
+
+.Checkout-Page .Order-Summary .Header-Mobile .Panel-Status h1 {
+    font-size: 14px;
+    color: #000;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    line-height: 1.167;
+    letter-spacing: -0.01562em;
+}
+
+.Checkout-Page .Order-Summary .Header-Mobile .Panel-Status svg {
+    color: #61CEB4;
+    fill: currentColor;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    font-size: 1.5rem;
+    transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+
 
 .Checkout-Page .Discount-Input-Section {
     border-top: 1px solid #EBEBEB;
@@ -543,13 +637,13 @@
     letter-spacing: 0.00938em;
 }
 
-.Order-Summary-Desktop .Discount-Input .focus label {
+.Order-Summary .Discount-Input .focus label {
     font-size: 12px;
     text-transform: uppercase;
     transform: translate(10px, 7px) scale(0.75);
 }
 
-.Order-Summary-Desktop .Discount-Input span {
+.Order-Summary .Discount-Input span {
     border-radius: 5px;
     color: rgba(0, 0, 0, 0.87);
     cursor: text;
@@ -737,7 +831,7 @@
     width: 100%;
 }
 
-.Checkout-Page .Order-Summary-Desktop .Warranty-Options .Polaris-Card {
+.Checkout-Page .Order-Summary .Warranty-Options .Polaris-Card {
     margin-top: 10px;
 }
 
@@ -968,20 +1062,19 @@
     padding-right: 2px;
 }
 
-/* .Shipping-Details .Polaris-FormLayout__Item,
-.Payment-Option-Card .Payment-Card-Form .Polaris-FormLayout__Item {
-    margin-left: 0;
-    max-width: none;
+.Checkout-Page .Cart-Timer-Section {
+    display: none;
 }
 
-.Shipping-Details .Polaris-FormLayout__Item:not(:first-child) {
-    margin-left: var(--p-space-5);
+.Checkout-Page .Cart-Timer-Section .Cart-Timer-Section-Info {
+    color: #fff;
+    padding: 5px 15px;
+    font-size: 13px;
+    font-weight: 500;
+    background: #61CEB4;
+    text-align: center;
+    border-radius: 5px;
 }
-
-
-.Checkout-Page .Polaris-Card__Section .Polaris-FormLayout--grouped:first-child .Polaris-FormLayout__Item {
-    margin-top: 0;
-} */
 
 .Payment-Section .Polaris-Button {
     background: var(--checkify-select-color);
@@ -1003,7 +1096,49 @@
     box-shadow: none;
 }
 
+.Payment-Section-Footer {
+    color: black;
+    width: 100%;
+    opacity: 0.8;
+    font-size: 12px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.Payment-Section-Footer .Payment-Footer-Left,
+.Payment-Section-Footer .Payment-Footer-Right {
+    padding: 2.5px;
+    display: flex;
+    align-items: center;
+    line-height: 100%;
+    justify-content: center;
+}
+
+.Payment-Section-Footer .Payment-Footer-Left img {
+    filter: contrast(0);
+    margin-right: 5px;
+}
+
+.Payment-Section-Footer .Payment-Footer-Right img {
+    height: 14px;
+    margin-left: 5px;
+}
+
+
+
+@media only screen and (min-width: 768px) {
+    .container .Polaris-Layout__Section {
+        max-width: none !important;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .container .Polaris-Layout__Section {
+        max-width: 58% !important;
+    }
+}
 
 @media (min-width: 576px) {
     .container {
@@ -1041,12 +1176,24 @@
     }
 }
 
+@media only screen and (max-width: 399px) {
+    .Shipping-Options-Description-Title {
+        flex-direction: column;
+    }
+
+}
 
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 899px) {
     .Test-Section .Test-Grids {
         text-align: center;
         align-items: center;
+        flex-direction: column;
+    }
+
+    .Checkout-Page .Product-Offers-Mobile,
+    .Checkout-Page .Discount-Mobile {
+        display: flex;
         flex-direction: column;
     }
 
@@ -1054,13 +1201,93 @@
     .Checkout-Page .Discount-Mobile .Checikfy-Heading {
         margin: 0;
     }
-}
 
-@media only screen and (min-width: 768px) {
-    .container .Polaris-Layout__Section {
-        max-width: 58%;
+    .Checkout-Page .Order-Summary {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        background: #fff;
     }
 
+    .Checkout-Page .Order-Summary .Checikfy-Heading {
+        display: none;
+    }
+
+    .Checkout-Page .Order-Summary .Polaris-Card {
+        margin-top: 0;
+    }
+
+    .Checkout-Page .Order-Summary .Warranty-Options .Polaris-Card {
+        margin-top: 5px;
+    }
+
+    .Checkout-Page .Order-Summary .Polaris-Card__Section {
+        max-height: 560px;
+        padding: 0 15px;
+        padding-bottom: 20px;
+        background: #fff;
+        box-shadow: 0 1px 0 #ccc;
+        overflow-x: hidden;
+        overflow-y: auto;
+        transition: max-height 400ms cubic-bezier(0.79, -0.04, 0.3, 1);
+        border-radius: 5px;
+    }
+
+    .Checkout-Page .Order-Summary .Discount-Input-Desktop {
+        display: none;
+    }
+
+    .Checkout-Page .Order-Summary .Subdued-Card-Section .Polaris-Card__Section {
+        padding: 10px;
+        max-height: none;
+        background: none;
+        box-shadow: none;
+        overflow: auto;
+    }
+
+    .Checkout-Page .Order-Summary .Header-Mobile {
+        display: flex;
+    }
+
+    .Checkout-Page .Warranty-Options .Order-Product-Details {
+        padding: 0;
+    }
+
+    .Checkout-Page .Warranty-Options .Warranty-Options-Mobile {
+        display: block;
+    }
+
+    .Checkout-Page .Warranty-Options .Warranty-Options-Desktop {
+        display: none;
+    }
+
+    .Checkout-Page .Order-Summary .Order-Summary-Hidden {
+        display: none;
+        opacity: 0;
+        z-index: 0;
+    }
+
+    .Checkout-Page .Cart-Timer-Section {
+        padding-bottom: 20px;
+    }
+
+    .Checkout-Page .Strong-Demand-Announcement {
+        padding-bottom: 10px;
+    }
+
+    .Checkout-Page .Cart-Timer-Section {
+        display: block;
+    }
+
+    .Checkout-Page .Order-Summary .Cart-Timer-Section {
+        display: none;
+    }
+
+}
+
+@media only screen and (min-width: 900px) {
     .Strong-Demand-Announcement {
         padding-bottom: 0px;
     }
@@ -1081,10 +1308,6 @@
         display: none;
     }
 
-    .Checkout-Page .Order-Summary-Desktop {
-        display: block;
-    }
-
     .Checkout-Page .Product-Offers-Mobile {
         display: none;
     }
@@ -1093,6 +1316,10 @@
     .Shipping-Options .Polaris-Card,
     .Billing-Address .Polaris-Card {
         margin-top: 1rem;
+    }
+
+    .Checkout-Page .Order-Summary .Cart-Timer-Section {
+        display: block;
     }
 }
 

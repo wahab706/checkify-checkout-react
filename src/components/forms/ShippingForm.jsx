@@ -5,16 +5,6 @@ import countryList from 'react-select-country-list'
 export function ShippingForm({ shippingDetails, handleShippingDetails }) {
     const options = useMemo(() => countryList().getData(), [])
 
-    useEffect(() => {
-
-        {
-            options?.map((item) => {
-                console.log('value: ', item.value, 'label: ', item.label);
-            })
-        }
-    }, [options])
-
-
     return (
         <Form>
             <FormLayout>
@@ -26,7 +16,7 @@ export function ShippingForm({ shippingDetails, handleShippingDetails }) {
                                     name='email'
                                     value={shippingDetails.email}
                                     onChange={handleShippingDetails}
-                                    placeholder='Email'
+                                    placeholder='Email Address'
                                     aria-invalid="false"
                                     required
                                     className="Polaris-TextField__Input"
@@ -92,7 +82,6 @@ export function ShippingForm({ shippingDetails, handleShippingDetails }) {
                     </div>
                 </FormLayout.Group>
 
-
                 <FormLayout.Group>
                     <div className="Polaris-Connected">
                         <div className="Polaris-Connected__Item Polaris-Connected__Item--primary">
@@ -123,9 +112,9 @@ export function ShippingForm({ shippingDetails, handleShippingDetails }) {
                                     className="Polaris-Select__Input"
                                     aria-invalid="false">
 
-                                    {options?.map((item) => {
+                                    {options?.map((item, index) => {
                                         return (
-                                            <option value={item.label}> {item.label}</option>
+                                            <option value={item.label} key={index}> {item.label}</option>
                                         )
                                     })}
 

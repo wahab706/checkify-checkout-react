@@ -12,6 +12,7 @@ import AmEx from '../assets/AmEx.svg'
 import master from '../assets/master.svg'
 import union from '../assets/union.svg'
 import visa from '../assets/visa.svg'
+import lock from '../assets/lock.svg'
 import { ShippingForm, BillingForm } from '../components'
 
 export default function HomePage() {
@@ -43,11 +44,6 @@ export default function HomePage() {
     cvc: '',
   })
 
-  useEffect(() => {
-    console.log(shippingDetails);
-  }, [shippingDetails])
-
-
   const [signUpExclusive, setSignUpExclusive] = useState(true);
   const [isBillingAddressSame, setIsBillingAddressSame] = useState(true);
   const [shippingOptionsValue, setShippingOptionsValue] = useState('pro');
@@ -56,6 +52,8 @@ export default function HomePage() {
   const [buy1Get1warranty, setBuy1Get1warranty] = useState(true);
   const [paymentOptionsValue, setPaymentOptionsValue] = useState('card')
   const [paymentSelectedTab, setPaymentSelectedTab] = useState(0);
+  const [headerPanelStatus, setHeaderPanelStatus] = useState(false)
+  const [cartTimer, setCartTimer] = useState(true)
 
 
   const handleShippingDetails = (e) => {
@@ -133,6 +131,41 @@ export default function HomePage() {
     },
   ];
 
+  useEffect(() => {
+    console.log('isBillingAddressSame: ', isBillingAddressSame);
+  }, [isBillingAddressSame])
+
+  // useEffect(() => {
+  //   function countdown(elementName, minutes, seconds) {
+  //     var element, endTime, hours, mins, msLeft, time;
+
+  //     function twoDigits(n) {
+  //       return (n <= 9 ? "0" + n : n);
+  //     }
+
+  //     function updateTimer() {
+  //       msLeft = endTime - (+new Date);
+  //       if (msLeft < 1000) {
+  //         element.innerHTML = "Time is up!";
+  //       } else {
+  //         time = new Date(msLeft);
+  //         hours = time.getUTCHours();
+  //         mins = time.getUTCMinutes();
+  //         element.innerHTML = (hours ? hours + ':' + twoDigits(mins) : mins) + ':' + twoDigits(time.getUTCSeconds());
+  //         setTimeout(updateTimer, time.getUTCMilliseconds() + 500);
+  //       }
+  //     }
+
+  //     element = document.getElementById(elementName);
+  //     endTime = (+new Date) + 1000 * (60 * minutes + seconds) + 500;
+  //     updateTimer();
+  //   }
+
+  //   countdown("ten-countdown", 10, 0);
+
+  // }, [])
+
+
   return (
     <div className='container Checkout-Page'>
       <Page fullWidth>
@@ -146,6 +179,13 @@ export default function HomePage() {
             <div className='Announcement-Top'>
               {Announement()}
             </div>
+
+            {/* <div className='Cart-Timer-Section'>
+              <div className='Cart-Timer-Section-Info'>
+                {'Your cart is reserved for '}
+                <span id='ten-countdown'></span>
+              </div>
+            </div> */}
 
             <div className='PayButton LinkButton'>
               <Card sectioned>
@@ -171,6 +211,17 @@ export default function HomePage() {
                 </Button>
               </Card>
             </div>
+
+            {/* <div className='PayButton BuyNowButton'>
+              <Card sectioned>
+                <Button>
+                  <div className='BuyNowButton-Content'>
+                    <span className='BuyNowButton-Text'>Buy now</span>
+                    <canvas class="BuyNowButton-Icon"></canvas>
+                  </div>
+                </Button>
+              </Card>
+            </div> */}
 
             <div className='PayButton PaypalButton'>
               <Card sectioned>
@@ -218,7 +269,7 @@ export default function HomePage() {
                   <RadioButton
                     label={
                       <span className='Shipping-Options-Description'>
-                        <span>
+                        <span className='Shipping-Options-Description-Title'>
                           Checkify Beta 1.0
                           <small>(Best checkout ever)</small>
                         </span>
@@ -236,7 +287,7 @@ export default function HomePage() {
                   <RadioButton
                     label={
                       <span className='Shipping-Options-Description'>
-                        <span>
+                        <span className='Shipping-Options-Description-Title'>
                           Checkify Beta 2.0
                           <small>(⭐⭐ Best checkout ever)</small>
                         </span>
@@ -254,7 +305,7 @@ export default function HomePage() {
                   <RadioButton
                     label={
                       <span className='Shipping-Options-Description'>
-                        <span>
+                        <span className='Shipping-Options-Description-Title'>
                           Checkify Pro
                           <small>(⭐⭐⭐ Best checkout ever)</small>
                         </span>
@@ -283,7 +334,7 @@ export default function HomePage() {
                 />
 
                 <div>
-                  <span className={`${isBillingAddressSame ? 'visually-hidden' : ' '}`}>
+                  <span className={`${!isBillingAddressSame ? ' ' : 'visually-hidden'}`}>
                     <BillingForm
                       billingDetails={billingDetails}
                       handleBillingDetails={handleBillingDetails}
@@ -301,78 +352,158 @@ export default function HomePage() {
           </Layout.Section>
 
           <Layout.Section secondary>
-            <div className='Order-Summary-Desktop'>
+            <div className='Order-Summary'>
+              <div className='Header-Mobile' onClick={() => setHeaderPanelStatus(!headerPanelStatus)}>
+                <div className='Panel-Status'>
+                  <h1> {headerPanelStatus ? 'Hide Order Summary' : 'Show Order Summary'} </h1>
+                  <svg focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                    {headerPanelStatus ?
+                      <path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"></path> :
+                      <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path>
+                    }
+                  </svg>
+                </div>
+                <div className='Total-Price'>€75.84</div>
+              </div>
               <h1 className='Checikfy-Heading'>Order Summary</h1>
-              <Card sectioned>
-                <div className='Subdued-Card-Section'>
-                  <Card sectioned>
-                    <div className='Order-Product-Details'>
-                      <Stack>
-                        <div className='Order-Product-Image-Section'>
-                          <div className='Order-Product-Image'>
-                            <img src="https://cdn.shopify.com/s/files/1/0516/2831/0707/products/14-1.jpg?v=1665588654&width=100" alt="product" />
+
+              {/* <div className='Cart-Timer-Section'>
+                  <div className='Cart-Timer-Section-Info'>
+                    {'Your cart is reserved for '}
+                    <span id='ten-countdown'></span>
+                  </div>
+              </div> */}
+
+              <span className={`${!headerPanelStatus && 'Order-Summary-Hidden'}`}>
+                <Card sectioned>
+                  <div className='Subdued-Card-Section'>
+                    <Card sectioned>
+                      <div className='Order-Product-Details'>
+                        <Stack>
+                          <div className='Order-Product-Image-Section'>
+                            <div className='Order-Product-Image'>
+                              <img src="https://cdn.shopify.com/s/files/1/0516/2831/0707/products/14-1.jpg?v=1665588654&width=100" alt="product" />
+                            </div>
+
+                            <div className='Order-Quantity'>1</div>
                           </div>
-
-                          <div className='Order-Quantity'>1</div>
-                        </div>
-                        <div className='Order-Product-Detail-Section'>
-                          <div className='Product-Title-Section'>
-                            <h2 className='Product-Title'>Aglaonema Plant</h2>
-                            <h2 className='Product-Title'>€35.00</h2>
+                          <div className='Order-Product-Detail-Section'>
+                            <div className='Product-Title-Section'>
+                              <h2 className='Product-Title'>Aglaonema Plant</h2>
+                              <h2 className='Product-Title'>€35.00</h2>
+                            </div>
+                            <h3 className='Product-Extras'>Old</h3>
                           </div>
-                          <h3 className='Product-Extras'>Old</h3>
-                        </div>
-                      </Stack>
-                    </div>
+                        </Stack>
+                      </div>
 
-                    {DiscountCode(discountCode, handleDiscountCode)}
-                  </Card>
-                </div>
+                      <span className='Discount-Input-Desktop'>
+                        {DiscountCode(discountCode, handleDiscountCode)}
+                      </span>
 
-                <div className='Order-Prices-Section'>
-                  <Stack>
-                    <span>Subtotal</span>
-                    <span>€35.00</span>
-                  </Stack>
-                  <Stack>
-                    <span className='Order-Prices-Dual'>
-                      VAT
-                      <span className='Order-Prices-Percentage'>17.00%</span>
+                    </Card>
+                  </div>
+
+                  <div className='Order-Prices-Section'>
+                    <Stack>
+                      <span>Subtotal</span>
+                      <span>€35.00</span>
+                    </Stack>
+                    <Stack>
+                      <span className='Order-Prices-Dual'>
+                        VAT
+                        <span className='Order-Prices-Percentage'>17.00%</span>
+                      </span>
+                      <span>€5.95</span>
+                    </Stack>
+                    <Stack>
+                      <span className='Order-Prices-Dual'>
+                        Checkify Pro
+                        <span className='Order-Prices-Percentage'>⭐⭐⭐ Best checkout ever</span>
+                      </span>
+                      <span>€29.90</span>
+                    </Stack>
+                  </div>
+
+                  <div className='Subdued-Card-Section Warranty-Options'>
+                    <span className='Warranty-Options-Mobile'>
+                      {oneYearwarranty &&
+                        <Card sectioned>
+                          <div className='Order-Product-Details'>
+                            <Stack>
+                              <div className='Order-Product-Image-Section'>
+                                <div className='Order-Product-Image'>
+                                  <img src="https://cdn.shopify.com/s/files/1/0516/2831/0707/files/Extended-Warranty-1year-widcare.png?v=1660557379&width=100" alt="product" />
+                                </div>
+                              </div>
+                              <div className='Order-Product-Detail-Section'>
+                                <div className='Product-Title-Section'>
+                                  <span className='Product-Title'>
+                                    1 Year Extended Warranty
+                                    <h3 className='Product-Extras'>This limited warranty applies to any repair or replacement item.</h3>
+                                  </span>
+                                  <h2 className='Product-Title'>€4.99</h2>
+                                </div>
+
+                              </div>
+                            </Stack>
+                          </div>
+                        </Card>
+                      }
                     </span>
-                    <span>€5.95</span>
-                  </Stack>
-                  <Stack>
-                    <span className='Order-Prices-Dual'>
-                      Checkify Pro
-                      <span className='Order-Prices-Percentage'>⭐⭐⭐ Best checkout ever</span>
+                    <span className='Warranty-Options-Desktop'>
+                      <Card sectioned>
+                        {ProductWarrantyOption1(oneYearwarranty, handleOneYearWarraty)}
+                      </Card>
                     </span>
-                    <span>€29.90</span>
-                  </Stack>
-                </div>
+                  </div>
 
-                <div className='Subdued-Card-Section Warranty-Options'>
-                  <Card sectioned>
-                    {ProductWarrantyOption1(oneYearwarranty, handleOneYearWarraty)}
-                  </Card>
-                </div>
+                  <div className='Subdued-Card-Section Warranty-Options'>
+                    <span className='Warranty-Options-Mobile'>
+                      {buy1Get1warranty &&
+                        <Card sectioned>
+                          <div className='Order-Product-Details'>
+                            <Stack>
+                              <div className='Order-Product-Image-Section'>
+                                <div className='Order-Product-Image'>
+                                  <img src="https://cdn.shopify.com/s/files/1/0516/2831/0707/products/14-1.jpg?v=1665588654&width=40&width=100" alt="product" />
+                                </div>
+                              </div>
+                              <div className='Order-Product-Detail-Section'>
+                                <div className='Product-Title-Section'>
+                                  <span className='Product-Title'>
+                                    Buy 1 Get 2 - Aglaonema Plant
+                                    <h3 className='Product-Extras'>Special offer for you</h3>
+                                  </span>
+                                  <h2 className='Product-Title'>Free</h2>
+                                </div>
 
-                <div className='Subdued-Card-Section Warranty-Options'>
-                  <Card sectioned>
-                    {ProductWarrantyOption2(buy1Get1warranty, handleBuy1Get1warranty)}
-                  </Card>
-                </div>
-
-                <div className='Order-Total-Section'>
-                  <p>Total</p>
-                  <p>
-                    <span className='Order-Price-Currency'>EUR</span>
-                    <span className='Order-Price'>
-                      €70.85
+                              </div>
+                            </Stack>
+                          </div>
+                        </Card>
+                      }
                     </span>
-                    <span className='Order-Price-Currency'>(~ PKR 16751)</span>
-                  </p>
-                </div>
-              </Card>
+                    <span className='Warranty-Options-Desktop'>
+                      <Card sectioned>
+                        {ProductWarrantyOption2(buy1Get1warranty, handleBuy1Get1warranty)}
+                      </Card>
+                    </span>
+                  </div>
+
+                  <div className='Order-Total-Section'>
+                    <p>Total</p>
+                    <p>
+                      <span className='Order-Price-Currency'>EUR</span>
+                      <span className='Order-Price'>
+                        €70.85
+                      </span>
+                      <span className='Order-Price-Currency'>(~ PKR 16751)</span>
+                    </p>
+                  </div>
+                </Card>
+              </span>
+
             </div>
 
             <div className='Product-Offers-Mobile'>
@@ -619,6 +750,18 @@ export default function HomePage() {
                   <Button submit>Complete Purchase</Button>
                 </Stack>
               </Card>
+
+              <div className='Payment-Section-Footer'>
+                <div className='Payment-Footer-Left'>
+                  <img src={lock} alt="lock" />
+                  <span>Transaction secured</span>
+                </div>
+
+                <div className='Payment-Footer-Right'>
+                  <span>©️ </span>
+                  <img src={chekifyLogo} alt="checkify" />
+                </div>
+              </div>
             </div>
 
             <div className='Test-Section-Mobile'>
@@ -670,6 +813,14 @@ function DiscountCode(discountCode, handleDiscountCode) {
         }
       </div>
     </div>
+  )
+}
+
+function OrderSummary() {
+  return (
+    <>
+
+    </>
   )
 }
 
@@ -736,7 +887,6 @@ function ProductWarrantyOption2(buy1Get1warranty, handleBuy1Get1warranty) {
     </>
   )
 }
-
 
 function TestSection() {
   return (
